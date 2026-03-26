@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addOn>
+  <identifier>e14b0250-adfa-42e5-8583-f331363e6dd5</identifier>
+  <displayType>Collection</displayType>
+  <translatedDisplayType>
+    <en_US>Collection</en_US>
+    <ja_JP>コレクション</ja_JP>
+    <ko_KR>컬렉션</ko_KR>
+    <zh_CN>集合</zh_CN>
+  </translatedDisplayType>
+  <name>Vehicle Dynamics Simulation Environment</name>
+  <author>Team VDSE</author>
+  <version>1.0.0</version>
+  <downloadUrl>https://www.mathworks.com/matlabcentral/mlc-downloads/downloads/e14b0250-adfa-42e5-8583-f331363e6dd5/3970d0b5-67af-499c-a4f5-dbfe3aa2e663/packages/zip?src=addons_ml_desktop_install&amp;profile_id=33929382&amp;license=40569843&amp;release_family=R2025b</downloadUrl>
+  <licenseUrl>https://addons.mathworks.com/registry/v1/e14b0250-adfa-42e5-8583-f331363e6dd5/1.0.0/-/license</licenseUrl>
+  <previewImageUrl>https://www.mathworks.com/responsive_image/160/120/0/0/0/cache/matlabcentral/mlc-downloads/downloads/e14b0250-adfa-42e5-8583-f331363e6dd5/3970d0b5-67af-499c-a4f5-dbfe3aa2e663/images/1617046157.png</previewImageUrl>
+  <releaseNotesUrl>https://www.mathworks.com/add-ons/e14b0250-adfa-42e5-8583-f331363e6dd5/3970d0b5-67af-499c-a4f5-dbfe3aa2e663/releaseNotes</releaseNotesUrl>
+  <installationFolder>Collections</installationFolder>
+</addOn>

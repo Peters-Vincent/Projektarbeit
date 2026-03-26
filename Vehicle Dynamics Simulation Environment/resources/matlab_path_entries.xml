@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paths>
+  <path>.</path>
+  <path>VDSE</path>
+  <path>VDSE\Blender</path>
+  <path>VDSE\MFeval</path>
+  <path>VDSE\MFeval\+mfeval\slprj</path>
+  <path>VDSE\MFeval\+mfeval\slprj\sim</path>
+  <path>VDSE\MFeval\+mfeval\slprj\sim\varcache</path>
+  <path>VDSE\MFeval\+mfeval\slprj\sim\varcache\vehicle_14Dof_mfEval_DriverModel_v4</path>
+  <path>VDSE\MFeval\+mfeval\slprj\sim\varcache\vehicle_14Dof_mfEval_DriverModel_v4\tmwinternal</path>
+  <path>VDSE\MFeval\+mfeval\slprj\_jitprj</path>
+  <path>VDSE\MFeval\+mfeval\slprj\_sfprj</path>
+  <path>VDSE\MFeval\+mfeval\slprj\_sfprj\EMLReport</path>
+  <path>VDSE\MFeval\+mfeval\slprj\_sfprj\precompile</path>
+  <path>VDSE\MFeval\+mfeval\slprj\_sfprj\vehicle_14Dof_mfEval_DriverModel_v4</path>
+  <path>VDSE\MFeval\+mfeval\slprj\_sfprj\vehicle_14Dof_mfEval_DriverModel_v4\_self</path>
+  <path>VDSE\MFeval\+mfeval\slprj\_sfprj\vehicle_14Dof_mfEval_DriverModel_v4\_self\sfun</path>
+  <path>VDSE\MFeval\+mfeval\slprj\_sfprj\vehicle_14Dof_mfEval_DriverModel_v4\_self\sfun\info</path>
+</paths>
