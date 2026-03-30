@@ -6,95 +6,78 @@ output_samping_time = 0.001; % Sampling time for saving the outputs of the simul
 %% Vehicle Parameters
 g = 9.806; % gravity acceleration [m/s^2]
 
-m = 1310; % sprung mass [kg]
-mF = 45; % half front unsprung mass [kg]
-mR = 50; % half rear unsprung mass [kg]
+m = 258.612; % sprung mass [kg]
+mF = 10.347; % half front unsprung mass [kg]
+mR = 10.347; % half rear unsprung mass [kg]
 
-hcog = 0.5; % height of center of gravity of sprung mass [m]
-huFcog = 0.32; % height of center of gravity of front unsprung mass [m]
-huRcog = 0.32; % height of center of gravity of rear unsprung mass [m]
+hcog = 0.3054; % height of center of gravity of sprung mass [m]
+huFcog = 0.3054; % height of center of gravity of front unsprung mass [m]
+huRcog = 0.3054; % height of center of gravity of rear unsprung mass [m]
 
-Jx = 430; % roll inertia [kg.m^2]
-Jy = 1309; % pitch inertia [kg.m^2]
-Jz = 1461; % yaw inertia [kg.m^2]
-JwF = 2.45; % front wheels inertia [kg.m^2]
-JwR = 2.45; % rear wheels inertia [kg.m^2]
+Jx = 430; % roll inertia [kg.m^2]                                           TO DO
+Jy = 1309; % pitch inertia [kg.m^2]                                         TO DO
+Jz = 1461; % yaw inertia [kg.m^2]                                           TO DO
+JwF = 2.45; % front wheels inertia [kg.m^2]                                 TO DO
+JwR = 2.45; % rear wheels inertia [kg.m^2]                                  TO DO
 
-l = 2.5; %wheelbase of vehicle [m]
-lF = 1.223; % distance of the front axle to the center of gravity [m]
-lR = l-lF; % distance of the rear axle to the center of gravity [m]
-wF = 1.578; % front track [m]
+l = 1.53; %wheelbase of vehicle [m]
+lF = 1.223; % distance of the front axle to the center of gravity [m]       TO DO
+lR = l-lF; % distance of the rear axle to the center of gravity [m]         TO DO
+wF = 1.578; % front track [m]                                        
 wR = 1.544; % rear track [m]
 
 
-hpc = 0.0; % height of pitch center [m]
-hrcF = 0.3; % height of the roll center at the front axle [m]
-hrcR = 0.2; % height of the roll center at the rear axle [m]
+hpc = 0.0; % height of pitch center [m]                                     TO DO
+hrcF = 0; % height of the roll center at the front axle [m]                 TO DO
+hrcR = 0; % height of the roll center at the rear axle [m]                  TO DO
 
 kF = 40000; % front springs rate [N/m]
 kR = 35000; % rear springs rate [N/m]
 
-cF = 5000; % Damping rate at the front [Ns/m]
-cR = 5000; % Damping rate at the rear [Ns/m]
+cF = 1000; % Damping rate at the front [Ns/m]                               TO DO
+cR = 1000; % Damping rate at the rear [Ns/m]                                TO DO
 
-kRF = 0; % Front antiroll bar rate [N/m] or [Nm/rad]
-kRR = 0; % Rear antiroll bar rate [N/m] or [Nm/rad]
+kRF = 0; % Front antiroll bar rate [N/m] or [Nm/rad]                        TO DO
+kRR = 0; % Rear antiroll bar rate [N/m] or [Nm/rad]                         TO DO
 
 % Aerodynamics 
-clF = -0.15; % Front lift coefficient (negative creates downforce)
-clR = -0.20; % Rear lift coefficient  (negative creates downforce)
-cd = 0.35; % Drag coefficient
---
-A = 2; % Vehicle's frontal area [m^2]
-rho = 1.2; % Air density [kg/m^3]
+Aero_balance=0.52; % percent of rear downforce
+cl=-2.8; % total cl
+clF = -cl*(1-Aero_balance); % Front lift coefficient (negative creates downforce)
+clR = -cl*Aero_balance; % Rear lift coefficient  (negative creates downforce)
+cd = 1.8; % Drag coefficient
+A = 1; % Vehicle's frontal area [m^2]
+rho = 1.225; % Air density [kg/m^3]
 
-steer_ratio = 13.25; % Ratio between steering wheel and wheel toe angle
+steer_ratio = 13.25; % Ratio between steering wheel and wheel toe angle     TO DO
 
 %% Driver and Powertrain
 %1 -> enabled; 0-> disabled
 enableLongDynamics = 1; %If disabled, the vehicle will cruise at a constant speed defined by the user in the Vx0 variable and no forces will slow the vehicle
 enablePowertrain = 1;   % If disabled no torque will be sent to the wheels from the powertrain or brakes but external torques can be introduced by the user in the “Enable powertrain block” in the Simulink model. 
+enableAWD=0; %RWD if disabled
 
-% Gear Ratios Map (1st to Last gear)
-GR = [2.9 1.8 1.3 1 0.85 0.75];
-Gear_numbers = [1 2 3 4 5 6];
-max_gears = length(Gear_numbers);
+% Gear Ratio
+GR = 5.3;
+
+%TV multiplier 
+%initial values for dynamic TV values range from -1 to 1 for each wheel#
+
+TV_FR=1;
+TV_FL=1;
+TV_RR=1;
+TV_RL=1;
 
 %Engine/Motors Maps
-Engine = xlsread('EngineMap.xlsx','A2:C17');
-throttle = [0:1/21:1]; %Throttle steps for interpolation
-RPMME = Engine(:,1);
-TorqueME = [];
-for i = 1:16 %number of lines to generate Engine curve
-    T = [0 1];
-    E = [Engine(i,2) Engine(i,3)];
-%     xx = (Engine(i,3) - Engine(i,2))/21; 
-%     x = [E(1):xx:E(2)];
-    TorqueME(i,:) = spline(T, E, throttle);
-end
-
-% Plot Engine Map (Torque and Engine)
-figure(1);
-h = surf(throttle*100,RPMME,TorqueME);xlabel('Throttle [%]');ylabel('Engine speed [RPM] '); zlabel('Engine Torque [Nm]'); title('Torque Engine Map');
-set(h,'LineStyle','none')
-colormap(jet);
-figure(2);
-h = surf(throttle*100,RPMME,TorqueME.*RPMME*30/pi);xlabel('Throttle [%]');ylabel('Engine speed [RPM] '); zlabel('Engine Power [W]'); title('Power Engine Map');
-set(h,'LineStyle','none')
-colormap(jet);
-
-
+Engine_Torque = xlsread('EngineMap.xlsx','A2:A17');
+Engine_Speed = 
 %Braking 
  cp_FA  = 30; % front axle cP-Value for estimation of the brake torque [N*m/bar] 
  cp_RA  = 13; % rear axle cP-Value for estimation of the brake torque [N*m/bar]
  max_pressure = 1000; % maximum pressure applied from the driver [bar]
  
-%Front/Rear final drive ratio:
-front_dr = 3.8; % [-]
-rear_dr = 3.8;  % [-]
 
 %AWD front-to-rear ratio (central_diff = 0 means RWD vehicle, 1 means FWD):
-central_diff =1;
 
 % Constant torques to be set by the user if powertrain is disabled 
 TFL = 0; % constant torque at front left wheel [Nm]
@@ -147,9 +130,9 @@ else
     ctR = tireR.VERTICAL_DAMPING; % Vertical damping of the rear tires [Ns/m]
 end
 %% Tire model selection
-WHEEL_ASSEMBLY_MFEVAL = Simulink.Variant('Mode == 1');
-WHEEL_ASSEMBLY_BCD = Simulink.Variant('Mode == 2');
-WHEEL_ASSEMBLY_PACEIJKA = Simulink.Variant('Mode == 3');
+WHEEL_ASSEMBLY_MFEVAL = Simulink.VariantExpression('Mode == 1');
+WHEEL_ASSEMBLY_BCD = Simulink.VariantExpression('Mode == 2');
+WHEEL_ASSEMBLY_PACEIJKA = Simulink.VariantExpression('Mode == 3');
 
 %Select mode 1 for MFEval Tire modelling, mode 2 for BCD Formulation, 3 for Magic Formula 5.2 Formulation
 Mode = 1; 
@@ -161,7 +144,7 @@ bump_time = 0; % bump time [s]
 %% Initial conditions
 
 x0 = 0; % initial sprung mass position x [m]
-Vx0 = 2; % initial sprung mass velocity x [m/s]
+Vx0 = 10; % initial sprung mass velocity x [m/s]
 
 y0 = 0; % initial sprung mass position y [m]
 Vy0 = 0; % initial sprung mass velocity y [m/s]
