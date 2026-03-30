@@ -146,9 +146,9 @@ else
     ctR = tireR.VERTICAL_DAMPING; % Vertical damping of the rear tires [Ns/m]
 end
 %% Tire model selection
-WHEEL_ASSEMBLY_MFEVAL = Simulink.Variant('Mode == 1');
-WHEEL_ASSEMBLY_BCD = Simulink.Variant('Mode == 2');
-WHEEL_ASSEMBLY_PACEIJKA = Simulink.Variant('Mode == 3');
+WHEEL_ASSEMBLY_MFEVAL = Simulink.VariantExpression('Mode == 1');
+WHEEL_ASSEMBLY_BCD = Simulink.VariantExpression('Mode == 2');
+WHEEL_ASSEMBLY_PACEIJKA = Simulink.VariantExpression('Mode == 3');
 
 %Select mode 1 for MFEval Tire modelling, mode 2 for BCD Formulation, 3 for Magic Formula 5.2 Formulation
 Mode = 1; 
@@ -160,7 +160,7 @@ bump_time = 0; % bump time [s]
 %% Initial conditions
 
 x0 = 0; % initial sprung mass position x [m]
-Vx0 = 0; % initial sprung mass velocity x [m/s]
+Vx0 = 10; % initial sprung mass velocity x [m/s]
 
 y0 = 0; % initial sprung mass position y [m]
 Vy0 = 0; % initial sprung mass velocity y [m/s]
