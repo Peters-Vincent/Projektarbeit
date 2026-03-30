@@ -1,8 +1,8 @@
 clear; clc
 %% Simulation parameters
 T_simulation = 20;
-simulation_step_time = 0.001; % For fixed-step solvers [s]
-output_samping_time = 0.001; % Sampling time for saving the outputs of the simulation [s]
+simulation_step_time = 0.01; % For fixed-step solvers [s]
+output_samping_time = 0.01; % Sampling time for saving the outputs of the simulation [s]
 %% Vehicle Parameters
 g = 9.806; % gravity acceleration [m/s^2]
 
@@ -97,9 +97,6 @@ enableDriverControl = 1; %% If disabled the “driver” will not track the requeste
 
 % Driver parameters 
 requested_speed = 100/3.6; %Speed that the driver is aiming for [m/s]
-initial_gear = 1; %Initial selected gear by the driver
-minrpm = 1500; %Engine rpm at which the driver will switch down gear [rpm]
-maxrpm = 4000; %Engine rpm at which the driver will switch up gear [rpm]
 %% Tire Parameters
 
 kappa_lower_limit=0.05;%setting lower limit for driver long slip controll 
@@ -108,14 +105,14 @@ kappa_upper_limit=0.15;%setting upper limit for driver long slip controll
 
 % If you have a .tir file select it otherwise leave it empty (''):
 % Select a .tir file for MFEval library and Paceijka 5.2
-tir_file_rear = 'car235_50R24.tir';
-tir_file_front = 'car235_50R24.tir';
+tir_file_rear = 'Goodyear_D2773.tir';
+tir_file_front = 'Goodyear_D2773.tir';
 
 % For the BCD tire formulation change the parameters in the following file:
-BCD_Parameters
+% BCD_Parameters
 
 % For the Paceijka's Magic Formula change the parameters in the following file:
-Paceijka52_Parameters
+% Paceijka52_Parameters
 
 % Other tyre parameters:
 if (isempty(tir_file_front) | isempty(tir_file_rear) )
@@ -144,13 +141,13 @@ WHEEL_ASSEMBLY_PACEIJKA = Simulink.VariantExpression('Mode == 3');
 Mode = 1; 
 %% Road parameters
 bump_height = 0; % bump height [m]
-bump_length = 0; % bump length [m]
-bump_time = 0; % bump time [s]
+bump_length = 1; % bump length [m]
+bump_time = 1; % bump time [s]
 
 %% Initial conditions
 
 x0 = 0; % initial sprung mass position x [m]
-Vx0 = 10; % initial sprung mass velocity x [m/s]
+Vx0 = 0; % initial sprung mass velocity x [m/s]
 
 y0 = 0; % initial sprung mass position y [m]
 Vy0 = 0; % initial sprung mass velocity y [m/s]
