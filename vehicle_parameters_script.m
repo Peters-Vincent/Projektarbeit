@@ -14,7 +14,7 @@ hcog = 0.3054; % height of center of gravity of sprung mass [m]
 huFcog = 0.3054; % height of center of gravity of front unsprung mass [m]
 huRcog = 0.3054; % height of center of gravity of rear unsprung mass [m]
 
-Jx = 430; % roll inertia [kg.m^2]                                           TO DO
+Jx = 43.0; % roll inertia [kg.m^2]                                           TO DO
 Jy = 1309; % pitch inertia [kg.m^2]                                         TO DO
 Jz = 1461; % yaw inertia [kg.m^2]                                           TO DO
 JwF = 2.45; % front wheels inertia [kg.m^2]                                 TO DO
@@ -61,7 +61,7 @@ enableAWD=1; %AWD if disabled
 GR = 5.3;
 
 %TV multiplier 
-%initial values for dynamic TV values range from -1 to 1 for each wheel#
+%initial values for dynamic TV values range from -1 to 1 for each wheel
 
 TV_FR=1;
 TV_FL=1;
