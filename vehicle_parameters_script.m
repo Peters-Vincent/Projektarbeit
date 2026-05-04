@@ -14,11 +14,11 @@ hcog = 0.3054; % height of center of gravity of sprung mass [m]
 huFcog = 0.3054; % height of center of gravity of front unsprung mass [m]
 huRcog = 0.3054; % height of center of gravity of rear unsprung mass [m]
 
-Jx = 43.0; % roll inertia [kg.m^2]                                           TO DO
-Jy = 1309; % pitch inertia [kg.m^2]                                         TO DO
-Jz = 1461; % yaw inertia [kg.m^2]                                           TO DO
-JwF = 2.45; % front wheels inertia [kg.m^2]                                 TO DO
-JwR = 2.45; % rear wheels inertia [kg.m^2]                                  TO DO
+Jx = 73; % roll inertia [kg.m^2]                                           guesstimation
+Jy = 230; % pitch inertia [kg.m^2]                                         
+Jz = 220; % yaw inertia [kg.m^2]                                           
+JwF = 0.32; % front wheels inertia [kg.m^2]                                 
+JwR = 0.32; % rear wheels inertia [kg.m^2]                                  
 
 l = 1.53; %wheelbase of vehicle [m]
 lF = 1.223; % distance of the front axle to the center of gravity [m]       TO DO
@@ -78,10 +78,10 @@ Throttle_Position = readmatrix('EngineMap.xlsx','Range','C2:C20');
  cp_RA  = 13; % rear axle cP-Value for estimation of the brake torque [N*m/bar]
  max_pressure = 1000; % maximum pressure applied from the driver [bar]
  
-imagesc(Throttle_Position, Engine_Speed, Engine_Torque)
-xlabel('Throttle_Position')
-ylabel('Engine_Speed')
-colorbar
+% imagesc(Throttle_Position, Engine_Speed, Engine_Torque)
+% xlabel('Throttle_Position')
+% ylabel('Engine_Speed')
+% colorbar
 
 %AWD front-to-rear ratio (central_diff = 0 means RWD vehicle, 1 means FWD):
 
@@ -147,7 +147,7 @@ bump_time = 1; % bump time [s]
 %% Initial conditions
 
 x0 = 0; % initial sprung mass position x [m]
-Vx0 = 0; % initial sprung mass velocity x [m/s]
+Vx0 = 1; % initial sprung mass velocity x [m/s]
 
 y0 = 0; % initial sprung mass position y [m]
 Vy0 = 0; % initial sprung mass velocity y [m/s]
